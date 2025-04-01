@@ -7,7 +7,8 @@
     "build": "scripts/server.sh build",
     "start": "scripts/server.sh start",
     "lint": "next lint . --ext ts,tsx --max-warnings 0 --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "scripts/commit/commit.sh"
   },
   "dependencies": {
     "next": "15.2.4",
