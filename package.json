@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+    "dev": "scripts/server.sh dev --turbopack",
+    "build": "scripts/server.sh build",
+    "start": "scripts/server.sh start",
     "lint": "next lint"
   },
   "dependencies": {
