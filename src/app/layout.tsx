@@ -2,6 +2,7 @@ import { Contrail_One } from "next/font/google";
 
 import type { Metadata } from "next";
 
+import Background from "@/components/Background";
 import StyledComponentsRegistry from "@/libs/styled-components";
 import ThemeProvider from "@/providers/theme";
 
@@ -27,7 +28,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.variable}>
         <StyledComponentsRegistry>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Background />
+            {children}
+          </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
