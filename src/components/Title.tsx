@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import type { HTMLAttributes } from "react";
 
-type TitleInterface = HTMLAttributes<HTMLParagraphElement>;
+type TitleProps = HTMLAttributes<HTMLParagraphElement>;
 
 export const orbitron = Orbitron({
   subsets: ["latin"],
@@ -22,7 +22,7 @@ export const Title = styled.p`
   z-index: 1;
 `;
 
-export default function TitleWrapper({ children, ...props }: TitleInterface) {
+export default function TitleWrapper({ children, ...props }: TitleProps) {
   return (
     <div data-component="Title" className={orbitron.className} {...props}>
       <Title>{children}</Title>

@@ -30,7 +30,7 @@ export default function Header() {
       />
       <ButtonsWrapper>
         <Button onClick={() => router.push("/about")}>About</Button>
-        <Button>ROADMAP</Button>
+        <Button onClick={() => router.push("/roadmap")}>ROADMAP</Button>
         <Button onClick={() => router.push("/manifesto")}>Manifesto</Button>
       </ButtonsWrapper>
     </HeaderWrapper>
