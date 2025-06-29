@@ -17,7 +17,7 @@ const Content = styled.ul`
   flex-direction: column;
   row-gap: 10px;
   display: flex;
-  flex-direction: column; /* 垂直排列 */
+  flex-direction: column;
   gap: 0.125rem;
 
   li {

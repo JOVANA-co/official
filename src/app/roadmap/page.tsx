@@ -1,9 +1,9 @@
-import Manifesto from "@/modules/Manifesto";
+import Roadmap from "@/modules/Roadmap";
 
 export default function Page() {
   return (
     <main>
-      <Manifesto />
+      <Roadmap />
     </main>
   );
 }
