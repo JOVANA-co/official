@@ -1,16 +1,21 @@
-import { Contrail_One } from "next/font/google";
+import { Exo_2, Vampiro_One } from "next/font/google";
 
 import type { Metadata } from "next";
 
-import Background from "@/components/Background";
 import StyledComponentsRegistry from "@/libs/styled-components";
 import ThemeProvider from "@/providers/theme";
 
 import "@/app/globals.css";
 
-const font = Contrail_One({
-  weight: "400",
-  variable: "--contrail-one",
+const exo2 = Exo_2({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--exo-2",
+  subsets: ["latin"],
+});
+
+const vampiro = Vampiro_One({
+  weight: ["400"],
+  variable: "--vampiro-one",
   subsets: ["latin"],
 });
 
@@ -26,12 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.variable}>
+      <body className={`${exo2.variable} ${vampiro.variable}`}>
         <StyledComponentsRegistry>
-          <ThemeProvider>
-            <Background />
-            {children}
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
