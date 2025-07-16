@@ -1,31 +1,36 @@
 "use client";
 
-import { Orbitron } from "next/font/google";
+import { Vampiro_One } from "next/font/google";
 import styled from "styled-components";
 
 import type { HTMLAttributes } from "react";
 
 type TitleProps = HTMLAttributes<HTMLParagraphElement>;
 
-export const orbitron = Orbitron({
+const vampiro = Vampiro_One({
+  weight: ["400"],
+  variable: "--vampiro-one",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
 });
 
-export const Title = styled.p`
-  font-size: 64px;
-  color: white;
+const Title = styled.h2`
   text-align: center;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #a54ac4,
-    0 0 80px #a54ac4, 0 0 90px #a54ac4;
-  z-index: 1;
+  font-family: var(--vampiro-one);
+  font-size: min(3rem, 4vw);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3rem;
+  letter-spacing: 0;
+
+  @media (max-width: 768px) {
+    font-size: min(2.5rem, 4vw);
+  }
 `;
 
 export default function TitleWrapper({ children, ...props }: TitleProps) {
   return (
-    <div data-component="Title" className={orbitron.className} {...props}>
-      <Title>{children}</Title>
+    <div data-component="Title" className={vampiro.className}>
+      <Title {...props}>{children}</Title>
     </div>
   );
 }

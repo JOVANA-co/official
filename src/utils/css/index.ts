@@ -8,6 +8,12 @@ export const flexCenter = css`
   justify-content: center;
 `;
 
+export const flexCenterStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+} as const;
+
 export const percentageOfFigma = (number: number) => {
   const vw = `${(100 * number) / FIGMA_WITH}vw`;
   const vh = `${(100 * number) / FIGMA_HEIGHT}vh`;
