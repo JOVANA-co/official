@@ -3,17 +3,24 @@ import styled from "styled-components";
 
 import Button from "@/components/Button";
 import Title from "@/components/Title";
+import { MOBILE_WITH } from "@/constants/rwd";
 import Card from "@/modules/Main/components/Card";
+import { clamp } from "@/utils/css";
 
 import Demo from "@/assets/images/Demo.png";
 
 const RoadMapContainer = styled.div`
   display: flex;
-  padding: 4rem calc(1rem * 80 / 16);
+  padding: ${clamp(80)} ${clamp(80)};
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
   background: ${({ theme }) => theme.primary[950]};
+
+  @media (max-width: ${MOBILE_WITH}px) {
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 const RollingBarContainer = styled.div`

@@ -2,6 +2,8 @@
 
 import styled from "styled-components";
 
+import { MOBILE_WITH } from "@/constants/rwd";
+
 import Logo from "@/assets/images/Logo";
 
 const FooterWrapper = styled.footer`
@@ -26,7 +28,7 @@ const Navigation = styled.nav`
   align-items: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${MOBILE_WITH}px) {
     gap: 1rem;
     flex-direction: column;
   }

@@ -4,12 +4,13 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import Title from "@/components/Title";
+import { clamp, rwdFontSize } from "@/utils/css";
 
 const FAQContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem calc(1rem * 112 / 16);
+  padding: ${clamp(64)} ${clamp(112)};
   background: linear-gradient(180deg, #4600ea 0%, #190052 100%);
 `;
 
@@ -20,11 +21,11 @@ const FAQTitle = styled(Title)`
 
 const FAQSubtitle = styled.p`
   color: ${({ theme }) => theme.white};
-  font-size: calc(1rem * 18 / 16);
   font-weight: 400;
   text-align: center;
-  margin-bottom: 3rem;
-  max-width: 600px;
+  margin-bottom: ${clamp(48)};
+
+  ${rwdFontSize(18)}
 `;
 
 const FAQList = styled.div`
@@ -49,10 +50,10 @@ const FAQItem = styled.div`
 
 const FAQQuestion = styled.h3`
   color: ${({ theme }) => theme.white};
-  font-size: calc(1rem * 20 / 16);
   font-weight: 500;
   margin: 0;
   flex: 1;
+  ${rwdFontSize(20, 0.7)}
 `;
 
 const ChevronIcon = styled.div<{ $isOpen: boolean }>`
@@ -84,9 +85,8 @@ const Separator = styled.div`
 
 const FAQAnswer = styled.div<{ $isOpen: boolean }>`
   color: ${({ theme }) => theme.white};
-  font-size: calc(1rem * 16 / 16);
+  ${rwdFontSize(18, 0.7)}
   font-weight: 400;
-  line-height: 1.6;
   padding: ${({ $isOpen }) => ($isOpen ? "1rem 0 1.5rem" : "0")};
   max-height: ${({ $isOpen }) => ($isOpen ? "200px" : "0")};
   overflow: hidden;
@@ -135,7 +135,7 @@ export default function FAQ() {
 
   return (
     <FAQContainer>
-      <FAQTitle>FAQs</FAQTitle>
+      <FAQTitle mobileScaleRatio={0.7}>FAQs</FAQTitle>
       <FAQSubtitle>
         Find answers to your questions about JOVANA and our innovative
         offerings.

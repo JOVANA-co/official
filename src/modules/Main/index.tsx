@@ -8,11 +8,14 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
 import About from "@/modules/Main/About";
-import Transition from "@/modules/Main/components/Transition";
+import Transition, {
+  TransitionTitle,
+} from "@/modules/Main/components/Transition";
 import FAQ from "@/modules/Main/FAQ";
 import Mail from "@/modules/Main/Mail";
 import Manifesto from "@/modules/Main/Manifesto";
 import RoadMap from "@/modules/Main/RoadMap";
+import { clamp, rwdFontSize } from "@/utils/css";
 
 import Demo from "@/assets/images/Demo.png";
 
@@ -23,9 +26,9 @@ const Container = styled.div`
   background: #fff;
 `;
 
-const Introduction = styled.div`
+const Introduction = styled.section`
   display: flex;
-  padding: 4rem calc(1rem * 112 / 16);
+  padding: ${clamp(64)} ${clamp(128)};
   flex-direction: column;
   align-items: center;
   background: linear-gradient(
@@ -37,8 +40,8 @@ const Introduction = styled.div`
 
 const Description = styled.p`
   color: ${({ theme }) => theme.white};
-  font-size: calc(1rem * 18 / 16);
   font-weight: 400;
+  ${rwdFontSize(18)}
 `;
 
 export default function Main() {
@@ -55,7 +58,10 @@ export default function Main() {
           }}
         />
         <Title
-          style={{ margin: "4rem 0 2rem", fontSize: "calc(1rem * 60 / 16)" }}
+          size={60}
+          style={{
+            margin: `${clamp(64)} 0 ${clamp(32)}`,
+          }}
         >
           Welcome! This is JOVANA.
         </Title>
@@ -67,11 +73,11 @@ export default function Main() {
       <About />
       <Manifesto />
       <Transition>
-        <Title>What exactly are we going to do?</Title>
+        <TransitionTitle>What exactly are we going to do?</TransitionTitle>
       </Transition>
       <RoadMap />
       <Transition>
-        <div
+        <TransitionTitle
           style={{
             display: "flex",
             flexDirection: "column",
@@ -80,16 +86,18 @@ export default function Main() {
           }}
         >
           <Title>We make our holders fucking damn rich!</Title>
-          <Title style={{ fontSize: "calc(1rem * 30 / 16)" }}>And...</Title>
-        </div>
+          <Title size={30}>And...</Title>
+        </TransitionTitle>
       </Transition>
       <Background
         center
         backDropProps={{
-          style: { margin: "4rem 5rem", padding: "16rem 22rem" },
+          style: {
+            margin: `${clamp(64)} ${clamp(80)}`,
+          },
         }}
       >
-        <Title>JOVANA will be all across the world!</Title>
+        <TransitionTitle>JOVANA will be all across the world!</TransitionTitle>
       </Background>
       <FAQ />
       <Mail />

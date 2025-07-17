@@ -34,7 +34,7 @@ const InputWrapper = styled.input`
   }
 
   @media (max-width: 768px) {
-    max-width: 100%;
+    max-width: 300px;
     padding: 0.875rem 1.25rem;
     font-size: 0.9rem;
   }
