@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Title from "@/components/Title";
 import theme from "@/providers/theme/theme";
+import { clamp } from "@/utils/css";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ const ContentContainer = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   align-self: stretch;
+  margin: ${clamp(80)} ${clamp(112)};
 `;
 
 const Description = styled.p`
@@ -27,12 +29,9 @@ const MailInputWrapper = styled.div`
 
 export default function Mail() {
   return (
-    <Background
-      backDropProps={{ style: { padding: "5rem 7rem" } }}
-      style={{ display: "flex" }}
-    >
+    <Background style={{ display: "flex" }}>
       <ContentContainer>
-        <Title>Join the JOVANA Journey</Title>
+        <Title mobileScaleRatio={0.55}>Join the JOVANA Journey</Title>
         <Description>
           Stay updated on our latest developments and exciting opportunities in
           the JOVANA ecosystem.

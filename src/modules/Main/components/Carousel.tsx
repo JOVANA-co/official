@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+import { MOBILE_WITH } from "@/constants/rwd";
+
 const CarouselContainer = styled.div`
   width: 100%;
-  height: 90vh;
+  height: min(77vh, 105vw);
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -14,6 +16,13 @@ const CarouselTrack = styled.div`
   gap: 1rem;
   width: 120vw;
   flex: none;
+
+  @media (max-width: ${MOBILE_WITH}px) {
+    & > :first-child,
+    & > :last-child {
+      display: none;
+    }
+  }
 `;
 
 const CarouselItem = styled.div`

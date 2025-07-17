@@ -3,6 +3,8 @@ import styled from "styled-components";
 import type { Theme } from "@/providers/theme/theme";
 import type { ReactNode } from "react";
 
+import { MOBILE_WITH } from "@/constants/rwd";
+
 type ButtonColor = Exclude<keyof Theme, "white" | "black">;
 
 interface ButtonProps extends React.ComponentProps<"button"> {
@@ -33,7 +35,7 @@ const ButtonWrapper = styled.button<{ $color?: ButtonColor }>`
     background: ${({ theme, $color = "secondary" }) => theme[$color][900]};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: ${MOBILE_WITH}px) {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
   }

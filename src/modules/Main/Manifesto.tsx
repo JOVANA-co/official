@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Background from "@/components/Background";
 import Button from "@/components/Button";
 import Title from "@/components/Title";
+import { MOBILE_WITH } from "@/constants/rwd";
 import theme from "@/providers/theme/theme";
+import { clamp } from "@/utils/css";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -16,6 +18,10 @@ const ContentContainer = styled.div`
 const Description = styled.p`
   max-width: 55%;
   text-align: center;
+
+  @media (max-width: ${MOBILE_WITH}px) {
+    max-width: 100%;
+  }
 `;
 
 export default function Manifesto() {
@@ -23,10 +29,10 @@ export default function Manifesto() {
     <Background
       center
       style={{ display: "flex" }}
-      backDropProps={{ style: { padding: "6rem 22rem" } }}
+      backDropProps={{ style: { padding: `${clamp(96)} ${clamp(228)}` } }}
     >
       <ContentContainer>
-        <Title>JOVANA&apos;s Manifesto</Title>
+        <Title mobileScaleRatio={0.7}>JOVANA&apos;s Manifesto</Title>
         <Description>
           JOVANA is a revolutionary movement creating core chips and cyber
           rebels to build a decentralized, people-owned universe—propelling

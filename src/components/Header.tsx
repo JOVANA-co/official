@@ -1,9 +1,12 @@
 "use client";
 
+import { Menu as MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 
 import Button from "@/components/Button";
+import { MOBILE_WITH } from "@/constants/rwd";
+import theme from "@/providers/theme/theme";
 
 import Logo from "@/assets/images/Logo";
 
@@ -22,9 +25,9 @@ const HeaderWrapper = styled.header`
   top: 0px;
   z-index: 1000;
   transition: all 0.3s ease;
-  width: 100%; /* 確保寬度 */
+  width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${MOBILE_WITH}px) {
     padding: 0.75rem 1rem;
   }
 `;
@@ -46,8 +49,8 @@ const Navigation = styled.nav`
   align-items: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
-    gap: 1rem;
+  @media (max-width: ${MOBILE_WITH}px) {
+    display: none;
   }
 `;
 
@@ -55,15 +58,10 @@ const NavLink = styled.a`
   position: relative;
   font-size: 1rem;
   font-weight: 500;
-  font-family: var(--exo-2);
   text-decoration: none;
   padding: 0.5rem 0;
   cursor: pointer;
   transition: color 0.2s ease;
-  color: var(--theme-background, #fff);
-
-  line-height: var(--font-leading-5, 20px); /* 142.857% */
-  letter-spacing: var(--font-tracking-normal, 0px);
 
   &::after {
     content: "";
@@ -82,7 +80,6 @@ const NavLink = styled.a`
 
   &:hover {
     color: ${({ theme }) => theme.secondary[600]};
-
     &::after {
       width: 100%;
     }
@@ -90,7 +87,6 @@ const NavLink = styled.a`
 
   &.active {
     color: ${({ theme }) => theme.secondary[600]};
-
     &::after {
       width: 100%;
     }
@@ -99,23 +95,14 @@ const NavLink = styled.a`
 
 const MobileMenuButton = styled.button`
   display: none;
-  flex-direction: column;
-  gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${MOBILE_WITH}px) {
     display: flex;
   }
-`;
-
-const MenuLine = styled.span`
-  width: 24px;
-  height: 2px;
-  background: #284b63;
-  transition: all 0.3s ease;
 `;
 
 export default function Header() {
@@ -131,7 +118,7 @@ export default function Header() {
 
   return (
     <HeaderWrapper data-component="Header">
-      <LogoWrapper onClick={handleLogoClick}>
+      <LogoWrapper data-component="LogoWrapper" onClick={handleLogoClick}>
         <Logo />
       </LogoWrapper>
 
@@ -141,13 +128,12 @@ export default function Header() {
           Manifesto
         </NavLink>
         <NavLink onClick={() => handleNavClick("/roadmap")}>Roadmap</NavLink>
+        <span>|</span>
         <Button onClick={() => handleNavClick("/contact")}>Contact</Button>
       </Navigation>
 
       <MobileMenuButton>
-        <MenuLine />
-        <MenuLine />
-        <MenuLine />
+        <MenuIcon color={theme.white} />
       </MobileMenuButton>
     </HeaderWrapper>
   );
