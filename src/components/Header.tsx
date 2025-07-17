@@ -2,11 +2,12 @@
 
 import { Menu as MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import styled from "styled-components";
 
 import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
 import { MOBILE_WITH } from "@/constants/rwd";
-import theme from "@/providers/theme/theme";
 
 import Logo from "@/assets/images/Logo";
 
@@ -99,14 +100,37 @@ const MobileMenuButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  color: ${({ theme }) => theme.white};
 
   @media (max-width: ${MOBILE_WITH}px) {
     display: flex;
   }
 `;
 
+const DrawerNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const DrawerNavLink = styled.a`
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: ${({ theme }) => theme.white};
+  border-bottom: 1px solid ${({ theme }) => theme.gray[300]};
+
+  &:hover {
+    color: ${({ theme }) => theme.secondary[300]};
+  }
+`;
+
 export default function Header() {
   const router = useRouter();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleLogoClick = () => {
     router.push("/");
@@ -114,27 +138,53 @@ export default function Header() {
 
   const handleNavClick = (path: string) => {
     router.push(path);
+    setIsDrawerOpen(false);
+  };
+
+  const handleMobileMenuClick = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
-    <HeaderWrapper data-component="Header">
-      <LogoWrapper data-component="LogoWrapper" onClick={handleLogoClick}>
-        <Logo />
-      </LogoWrapper>
+    <>
+      <HeaderWrapper data-component="Header">
+        <LogoWrapper data-component="LogoWrapper" onClick={handleLogoClick}>
+          <Logo />
+        </LogoWrapper>
 
-      <Navigation>
-        <NavLink onClick={() => handleNavClick("/about")}>About</NavLink>
-        <NavLink onClick={() => handleNavClick("/manifesto")}>
-          Manifesto
-        </NavLink>
-        <NavLink onClick={() => handleNavClick("/roadmap")}>Roadmap</NavLink>
-        <span>|</span>
-        <Button onClick={() => handleNavClick("/contact")}>Contact</Button>
-      </Navigation>
+        <Navigation>
+          <NavLink onClick={() => handleNavClick("/about")}>About</NavLink>
+          <NavLink onClick={() => handleNavClick("/manifesto")}>
+            Manifesto
+          </NavLink>
+          <NavLink onClick={() => handleNavClick("/roadmap")}>Roadmap</NavLink>
+          <span>|</span>
+          <Button onClick={() => handleNavClick("/contact")}>Contact</Button>
+        </Navigation>
 
-      <MobileMenuButton>
-        <MenuIcon color={theme.white} />
-      </MobileMenuButton>
-    </HeaderWrapper>
+        <MobileMenuButton onClick={handleMobileMenuClick}>
+          <MenuIcon size={24} />
+        </MobileMenuButton>
+      </HeaderWrapper>
+
+      <Drawer isOpen={isDrawerOpen} onClose={handleDrawerClose}>
+        <DrawerNav>
+          <DrawerNavLink onClick={() => handleNavClick("/about")}>
+            About
+          </DrawerNavLink>
+          <DrawerNavLink onClick={() => handleNavClick("/manifesto")}>
+            Manifesto
+          </DrawerNavLink>
+          <DrawerNavLink onClick={() => handleNavClick("/roadmap")}>
+            Roadmap
+          </DrawerNavLink>
+          <Button onClick={() => handleNavClick("/contact")}>Contact</Button>
+        </DrawerNav>
+      </Drawer>
+    </>
   );
 }
