@@ -4,15 +4,13 @@ import Image from "next/image";
 import styled from "styled-components";
 
 import Background from "@/components/Background";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import Title from "@/components/Title";
+import Mail from "@/modules/About/Mail";
 import About from "@/modules/Main/About";
 import Transition, {
   TransitionTitle,
 } from "@/modules/Main/components/Transition";
 import FAQ from "@/modules/Main/FAQ";
-import Mail from "@/modules/Main/Mail";
 import Manifesto from "@/modules/Main/Manifesto";
 import RoadMap from "@/modules/Main/RoadMap";
 import { clamp, rwdFontSize } from "@/utils/css";
@@ -23,7 +21,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: #fff;
 `;
 
 const Introduction = styled.section`
@@ -39,7 +36,6 @@ const Introduction = styled.section`
 `;
 
 const Description = styled.p`
-  color: ${({ theme }) => theme.white};
   font-weight: 400;
   ${rwdFontSize(18)}
 `;
@@ -47,11 +43,11 @@ const Description = styled.p`
 export default function Main() {
   return (
     <Container>
-      <Header />
       <Introduction>
         <Image
           src={Demo}
           alt="Picture of the author"
+          priority
           style={{
             width: "calc(100% * 1240 / 1440)",
             height: "auto",
@@ -101,7 +97,6 @@ export default function Main() {
       </Background>
       <FAQ />
       <Mail />
-      <Footer />
     </Container>
   );
 }

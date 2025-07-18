@@ -23,9 +23,10 @@ const BackgroundContainer = styled.div<{ $backgroundImage?: string }>`
   background-repeat: no-repeat;
 `;
 
-const BackDrop = styled.div`
+export const BackDrop = styled.div<{ $opacity?: number }>`
   inset: 0;
-  background-color: ${({ theme }) => hexToRgb(theme.black, 0.5)};
+  background-color: ${({ theme, $opacity }) =>
+    hexToRgb(theme.black, $opacity ?? 0.5)};
   z-index: 0;
   height: min-content;
   flex: 1;
