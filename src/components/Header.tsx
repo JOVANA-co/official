@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styled from "styled-components";
 
-import Button from "@/components/Button";
-import Drawer from "@/components/Drawer";
+import { Button, Drawer } from "@/components";
 import { MOBILE_WITH } from "@/constants/rwd";
 
 import Logo from "@/assets/images/Logo";
@@ -133,6 +132,7 @@ export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleLogoClick = () => {
+    console.log("handleLogoClick");
     router.push("/");
   };
 
