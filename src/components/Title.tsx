@@ -1,31 +1,45 @@
 "use client";
 
-import { Orbitron } from "next/font/google";
+import { Vampiro_One } from "next/font/google";
 import styled from "styled-components";
 
 import type { HTMLAttributes } from "react";
 
-type TitleProps = HTMLAttributes<HTMLParagraphElement>;
+import { rwdFontSize } from "@/utils/css";
 
-export const orbitron = Orbitron({
+interface TitleProps extends HTMLAttributes<HTMLParagraphElement> {
+  size?: number;
+  mobileScaleRatio?: number;
+}
+
+const vampiro = Vampiro_One({
+  weight: ["400"],
+  variable: "--vampiro-one",
   subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
 });
 
-export const Title = styled.p`
-  font-size: 64px;
-  color: white;
+const Title = styled.h2<{ $size: number; $mobileScaleRatio?: number }>`
   text-align: center;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #a54ac4,
-    0 0 80px #a54ac4, 0 0 90px #a54ac4;
-  z-index: 1;
+  font-family: var(--vampiro-one);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+
+  ${({ $size, $mobileScaleRatio }) =>
+    rwdFontSize($size, $mobileScaleRatio ?? 0.5)}
 `;
 
-export default function TitleWrapper({ children, ...props }: TitleProps) {
+export default function TitleWrapper({
+  children,
+  size = 48,
+  mobileScaleRatio,
+  ...props
+}: TitleProps) {
   return (
-    <div data-component="Title" className={orbitron.className} {...props}>
-      <Title>{children}</Title>
+    <div data-component="Title" className={vampiro.className}>
+      <Title {...props} $size={size} $mobileScaleRatio={mobileScaleRatio}>
+        {children}
+      </Title>
     </div>
   );
 }

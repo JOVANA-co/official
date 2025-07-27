@@ -9,5 +9,7 @@
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "cSpell.words": ["jovana"]
+  "cSpell.words": ["jovana"],
+  "i18n-ally.localesPaths": ["locales", "scripts/locale", "src/i18n"],
+  "i18n-ally.keystyle": "nested"
 }

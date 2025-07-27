@@ -1,90 +1,50 @@
-"use client";
-
 import styled from "styled-components";
 
+import type { Theme } from "@/providers/theme/theme";
 import type { ReactNode } from "react";
 
-interface ButtonProps {
+import { MOBILE_WITH } from "@/constants/rwd";
+
+type ButtonColor = Exclude<keyof Theme, "white" | "black">;
+
+interface ButtonProps extends React.ComponentProps<"button"> {
   children: ReactNode;
+  color?: ButtonColor;
 }
 
-const ButtonWrapper = styled.div`
-  padding: 1rem 2rem;
-  position: relative;
-  display: inline-block;
-  background-color: transparent;
-  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition-duration: 0.5s;
-  transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
-    backdrop-filter, -webkit-backdrop-filter;
+const ButtonWrapper = styled.button<{ $color?: ButtonColor }>`
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--exo-2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(88, 136, 161, 0.3);
+  background: ${({ theme, $color = "secondary" }) => theme[$color][600]};
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(88, 136, 161, 0.4);
+    background: ${({ theme, $color = "secondary" }) => theme[$color][100]};
+  }
+
+  &:active {
+    transform: translateY(0);
+    background: ${({ theme, $color = "secondary" }) => theme[$color][900]};
+  }
+
+  @media (max-width: ${MOBILE_WITH}px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 `;
 
-const ContentWrapper = styled.span`
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  display: flex;
-  gap: 0.25rem;
-`;
-
-const Border = styled.svg`
-  stroke: rgb(227, 223, 214);
-  color: rgb(227, 223, 214);
-  transition-property: opacity;
-  transition-timing-function: ease;
-  opacity: 0.3;
-  overflow: visible;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  pointer-events: none;
-  display: block;
-`;
-
-const ButtonBackground = styled.path`
-  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-  transition-duration: 0.5s;
-  transition-property: transform;
-  transform: translate(0, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(0);
-  transform-origin: bottom;
-  --tw-scale-y: 0;
-`;
-
-export default function Button(props: ButtonProps) {
+export default function Button({ color = "secondary", ...props }: ButtonProps) {
   return (
-    <ButtonWrapper>
-      <div className="content">
-        <Border
-          fill="none"
-          strokeWidth={1.5}
-          preserveAspectRatio="none"
-          viewBox="-2 -2 171 48"
-        >
-          <defs>
-            <clipPath id=":r0:-Clip">
-              <path
-                d="M 0 0L 0 -0.7341716636138432L 16.900000000000002 0.5927270907821366L 33.800000000000004 1.0300432952028733L 50.699999999999996 0.6523324720537599L 67.60000000000001 0.08494776766084686L 84.5 -0.9819837324737523L 101.39999999999999 0.8807529733780394L 118.3 0.9663157156451324L 135.20000000000002 0.5850068524367804L 152.1 0.5238153595117799L 168.0461329947263 0L 168.54381301617576 9.200000000000001L 168.4170556604134 18.400000000000002L 169.43249387068363 27.599999999999998L 169.70899590246583 36.800000000000004L 169 46.07340828268981L 152.1 45.83425075321927L 135.2 45.85550408093696L 118.30000000000001 47.434219431152655L 101.39999999999999 46.489554002887175L 84.5 47.39030686597497L 67.60000000000001 45.89771911050531L 50.7 45.53553621181185L 33.79999999999998 46.74502029681758L 16.900000000000006 44.826334573323265L -1.0315463925708042 46L -1.8231183579601338 36.8L 1.4534993804790157 27.599999999999998L -1.760627948534776 18.400000000000002L -0.6526188260415278 9.199999999999996L 0 -0.7341716636138432"
-                strokeWidth="1.5"
-              ></path>
-            </clipPath>
-          </defs>
-          <g clipPath="url(#:r0:-Clip)">
-            <ButtonBackground
-              d="M 0 0L 0 -0.7341716636138432L 16.900000000000002 0.5927270907821366L 33.800000000000004 1.0300432952028733L 50.699999999999996 0.6523324720537599L 67.60000000000001 0.08494776766084686L 84.5 -0.9819837324737523L 101.39999999999999 0.8807529733780394L 118.3 0.9663157156451324L 135.20000000000002 0.5850068524367804L 152.1 0.5238153595117799L 168.0461329947263 0L 168.54381301617576 9.200000000000001L 168.4170556604134 18.400000000000002L 169.43249387068363 27.599999999999998L 169.70899590246583 36.800000000000004L 169 46.07340828268981L 152.1 45.83425075321927L 135.2 45.85550408093696L 118.30000000000001 47.434219431152655L 101.39999999999999 46.489554002887175L 84.5 47.39030686597497L 67.60000000000001 45.89771911050531L 50.7 45.53553621181185L 33.79999999999998 46.74502029681758L 16.900000000000006 44.826334573323265L -1.0315463925708042 46L -1.8231183579601338 36.8L 1.4534993804790157 27.599999999999998L -1.760627948534776 18.400000000000002L -0.6526188260415278 9.199999999999996L 0 -0.7341716636138432"
-              fill="currentColor"
-              stroke="none"
-            />
-          </g>
-          <path
-            d="M 0 0L 0 -0.7341716636138432L 16.900000000000002 0.5927270907821366L 33.800000000000004 1.0300432952028733L 50.699999999999996 0.6523324720537599L 67.60000000000001 0.08494776766084686L 84.5 -0.9819837324737523L 101.39999999999999 0.8807529733780394L 118.3 0.9663157156451324L 135.20000000000002 0.5850068524367804L 152.1 0.5238153595117799L 168.0461329947263 0L 168.54381301617576 9.200000000000001L 168.4170556604134 18.400000000000002L 169.43249387068363 27.599999999999998L 169.70899590246583 36.800000000000004L 169 46.07340828268981L 152.1 45.83425075321927L 135.2 45.85550408093696L 118.30000000000001 47.434219431152655L 101.39999999999999 46.489554002887175L 84.5 47.39030686597497L 67.60000000000001 45.89771911050531L 50.7 45.53553621181185L 33.79999999999998 46.74502029681758L 16.900000000000006 44.826334573323265L -1.0315463925708042 46L -1.8231183579601338 36.8L 1.4534993804790157 27.599999999999998L -1.760627948534776 18.400000000000002L -0.6526188260415278 9.199999999999996L 0 -0.7341716636138432"
-            strokeWidth="1.5"
-          ></path>
-        </Border>
-      </div>
-      <ContentWrapper>{props.children}</ContentWrapper>
+    <ButtonWrapper data-component="Button" $color={color} {...props}>
+      {props.children}
     </ButtonWrapper>
   );
 }
