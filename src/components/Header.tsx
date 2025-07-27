@@ -2,6 +2,7 @@
 
 import { Menu as MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -40,7 +41,7 @@ const LogoWrapper = styled.div`
   transition: transform 0.2s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 `;
 
@@ -129,6 +130,8 @@ const DrawerNavLink = styled.a`
 
 export default function Header() {
   const router = useRouter();
+  const t = useTranslations();
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleLogoClick = () => {
@@ -157,13 +160,17 @@ export default function Header() {
         </LogoWrapper>
 
         <Navigation>
-          <NavLink onClick={() => handleNavClick("/about")}>About</NavLink>
+          <NavLink onClick={() => handleNavClick("/about")}>
+            {t("header.about")}
+          </NavLink>
           <NavLink onClick={() => handleNavClick("/manifesto")}>
             Manifesto
           </NavLink>
           <NavLink onClick={() => handleNavClick("/roadmap")}>Roadmap</NavLink>
           <span>|</span>
-          <Button onClick={() => handleNavClick("/contact")}>Contact</Button>
+          <Button onClick={() => handleNavClick("/contact")}>
+            {t("header.contact")}
+          </Button>
         </Navigation>
 
         <MobileMenuButton onClick={handleMobileMenuClick}>

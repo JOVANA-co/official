@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import styled from "styled-components";
 
 import Background from "@/components/Background";
@@ -41,6 +42,7 @@ const Description = styled.p`
 `;
 
 export default function Main() {
+  const t = useTranslations();
   return (
     <Container>
       <Introduction>
@@ -59,7 +61,7 @@ export default function Main() {
             margin: `${clamp(64)} 0 ${clamp(32)}`,
           }}
         >
-          Welcome! This is JOVANA.
+          {t("homepage.title")}
         </Title>
         <Description>
           We determined to build and shape this world into &quot;the future of

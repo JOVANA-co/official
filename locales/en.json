@@ -1,0 +1,12 @@
+{
+  "homepage": {
+    "title": "Welcome to our site"
+  },
+  "button": {
+    "contact": "Contact Us"
+  },
+  "header": {
+    "about": "About",
+    "contact": "Contact"
+  }
+}

@@ -70,7 +70,6 @@ const SocialIcon = styled.a`
 
 const Separator = styled.div`
   width: 80%;
-  max-width: 400px;
   height: 1px;
   background: ${({ theme }) => theme.gray[500]};
 `;
