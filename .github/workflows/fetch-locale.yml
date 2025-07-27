@@ -3,6 +3,9 @@ name: Fetch Google Sheet Translations
 on:
   workflow_dispatch: # 手動執行
 
+permissions:
+  contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
