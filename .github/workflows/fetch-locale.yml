@@ -32,6 +32,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add public/locales/
-          git commit -m "Update i18n from Google Sheet"
+          git add .
+          git commit -m "ci: update i18n from Google Sheet"
           git push
