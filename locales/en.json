@@ -8,5 +8,6 @@
   "header": {
     "about": "About",
     "contact": "Contact"
-  }
+  },
+  "test": "test"
 }
